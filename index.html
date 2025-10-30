@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Project Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="institution-brand">
+                        <div class="brand-logo">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="brand-text">
+                            <span class="institution-name">De La Salle Medical and Health Sciences Institute</span>
+                            <span class="department-name">Biotechnology Research Program - Research Services</span>
+                        </div>
+                    </div>
+
+                    <h1><i class="fas fa-dna"></i> Research Dashboard</h1>
+                    <p>Welcome to Biotechnology Research Program at DLSMHSI Research Services</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="toggleEditBtn" onclick="dashboard.toggleEditMode()">
+                        <i class="fas fa-edit"></i> Edit Mode
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Program Overview -->        
+        <section class="program-overview">
+            <div class="program-card">
+                <div class="program-header">
+                    <h2><i class="fas fa-microscope"></i> Biotechnology Research Program</h2>
+                    <div class="program-status">
+                        <span class="status-badge active">Active Program</span>
+                    </div>
+                </div>
+                <p class="program-description">
+                    The spearhead program for four major research projects, guiding research into community needs 
+                    according to the research agenda of respective agencies and institutions.
+                </p>
+                <div class="program-projects">
+                    <div class="project-summary">
+                        <div class="project-icon harper"><i class="fas fa-wave-square"></i></div>
+                        <span>Project Harper - Resonance Frequency Sterilization</span>
+                    </div>
+                    <div class="project-summary">
+                        <div class="project-icon bioregrade"><i class="fas fa-leaf"></i></div>
+                        <span>Project Bioregrade - Air Pollution Bioremediation</span>
+                    </div>
+                    <div class="project-summary">
+                        <div class="project-icon taal"><i class="fas fa-mountain"></i></div>
+                        <span>Project Taal Volcano - Extremophile Research</span>
+                    </div>
+                    <div class="project-summary">
+                        <div class="project-icon cancer"><i class="fas fa-dna"></i></div>
+                        <span>Project Cancer Research - Zinc Finger Technology</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Overview -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalProjects">0</h3>
+                        <p>Total Projects</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon active">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="activeProjects">0</h3>
+                        <p>Active Projects</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon completed">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="completedProjects">0</h3>
+                        <p>Completed Projects</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="pendingProjects">0</h3>
+                        <p>Pending Projects</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters and Search -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search projects...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                </div>
+                <div class="sort-dropdown">
+                    <select id="sortSelect">
+                        <option value="date">Sort by Date</option>
+                        <option value="name">Sort by Name</option>
+                        <option value="status">Sort by Status</option>
+                        <option value="priority">Sort by Priority</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects-section">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be dynamically inserted here -->
+            </div>
+        </section>
+        
+        <!-- Contact Information Section -->
+        <section class="contact-section-main">
+            <div class="contact-container">
+                <div class="contact-header">
+                    <i class="fas fa-address-card"></i>
+                    <h2>Contact Information</h2>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-user-tie"></i>
+                        <div class="contact-info">
+                            <strong>Principal Investigator & Program Leader</strong>
+                            <span>Ray Albert E. La Rosa</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info">
+                            <strong>Phone</strong>
+                            <a href="tel:+639218387300">0921-838-7300</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-info">
+                            <strong>Email</strong>
+                            <a href="mailto:relarosa@dlsmhsi.edu.ph">relarosa@dlsmhsi.edu.ph</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div class="contact-info">
+                            <strong>Research Portal</strong>
+                            <a href="https://research.dlsmhsi.edu.ph" target="_blank" rel="noopener noreferrer">research.dlsmhsi.edu.ph</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Professional Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="footer-text">
+                    <strong>De La Salle Medical and Health Sciences Institute</strong>
+                    <span>Biotechnology Research Program - Research Services</span>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2025 Biotechnology Research Dashboard | Developed by Ray Albert E. La Rosa</p>
+                <p>Professional Research Management System</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Project Modal -->
+    <div class="modal" id="addProjectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Research Project</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="addProjectForm">
+                <div class="form-group">
+                    <label for="projectTitle">Project Title</label>
+                    <input type="text" id="projectTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">Description</label>
+                    <textarea id="projectDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectProgram">Research Program</label>
+                        <input type="text" id="projectProgram" value="Biotechnology Research Program" placeholder="e.g., Biotechnology Research Program">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectPhase">Current Phase</label>
+                        <input type="text" id="projectPhase" placeholder="e.g., Phase 1 of 10">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectStatus">Status</label>
+                        <select id="projectStatus" required>
+                            <option value="pending">Pending</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectPriority">Priority</label>
+                        <select id="projectPriority" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectStartDate">Start Date</label>
+                        <input type="date" id="projectStartDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectEndDate">End Date</label>
+                        <input type="date" id="projectEndDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="projectTeam">Team Members</label>
+                    <input type="text" id="projectTeam" placeholder="Enter team members separated by commas">
+                </div>
+                <div class="form-group">
+                    <label for="projectBudget">Budget</label>
+                    <input type="number" id="projectBudget" placeholder="Enter budget amount">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
